@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <div class="album py-5 bg-light">
+    <div class="container">
+		  <div class="row"></div>
+    </div>
+  </div>
+
+  <script>
+    $.ajax({
+        url: "https://server-node-example.herokuapp.com/promotios-hub",
+        dataType: "json",
+        type: "GET",
+        success: function (quantidadeDeDados) {
+          console.log("data", quantidadeDeDados);
+        },
+    }).done(function(quantidadeDeDados) {
+      var json = '';
+
+      $.each(quantidadeDeDados, function(id, apresentaOsDados){
+  			json += `<div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            
+            <div class="card-body">
+  			<h5 class="card-title">${apresentaOsDados.nome}</h5>
+        <p class="card-text">${apresentaOsDados.valor}</p>
+ 			</div>
+  			</div>
+  			</div>`;
+			});
+		$(".row").prepend(json);
+    });
+    
+      
+  </script>
+</body>
+</html> 
+
+
+      
